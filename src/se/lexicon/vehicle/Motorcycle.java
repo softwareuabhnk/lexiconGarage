@@ -16,8 +16,9 @@ public class Motorcycle extends Vehicle {
 	@Override
 	public String toString() {
 		return "Motorcycle [fuelType=" + fuelType + ", getRegistrationNumber()=" + getRegistrationNumber()
-				+ ", getColor()=" + getColor() + ", getNumberOfWheels()=" + getNumberOfWheels() + "]";
+				+ ", getColor()=" + getColor() + ", getNumberOfWheels()=" + getNumberOfWheels() + ", getVehicleType()="
+				+ getVehicleType() + "]";
 	}
-	
 
+	
 }

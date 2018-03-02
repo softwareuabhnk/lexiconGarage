@@ -13,8 +13,6 @@ public class Main {
 		
 		ui.printHeader();
 		ui.start();
-
-		System.out.println("You have exited Vehicle Garage parking");
 		System.exit(0);
 
 	}

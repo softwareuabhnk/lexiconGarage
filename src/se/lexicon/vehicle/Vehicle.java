@@ -1,7 +1,6 @@
 package se.lexicon.vehicle;
 
 import se.lexicon.utilities.VehichleType;
-import se.lexicon.utilities.VehicleStatusType;
 
 public abstract class Vehicle {
 	

@@ -7,8 +7,12 @@ import se.lexicon.vehicle.VehicleGarageMemoryVersion;
 import se.lexicon.exception.VehicleGarageFullException;
 import se.lexicon.exception.VehicleNotFoundException;
 import se.lexicon.utilities.VehichleType;
-import se.lexicon.utilities.VehicleStatusType;
+import se.lexicon.utilities.VehicleFuelType;
+import se.lexicon.vehicle.Airplane;
+import se.lexicon.vehicle.Boat;
+import se.lexicon.vehicle.Bus;
 import se.lexicon.vehicle.Car;
+import se.lexicon.vehicle.Motorcycle;
 import se.lexicon.vehicle.Vehicle;
 import se.lexicon.vehicle.VehicleGarageInterface;
 
@@ -17,7 +21,9 @@ public class UserInterface {
 	VehicleGarageInterface vehicleGarage = new VehicleGarageMemoryVersion();
 
 	public void printHeader() {
-		System.out.println("Wellcome to Vehicle Garage parking");
+		System.out.println("Welcome to Vehicle Garage Parking:");
+		System.out.println("----------------------------------");
+		System.out.println("");
 	}
 
 	public void printDialog() {
@@ -30,21 +36,22 @@ public class UserInterface {
 		System.out.println(" 6 - Set Vehicle Garage capacity");
 		System.out.println(" 7 - Exit Vehicle Garage parking");
 	}
-
+	
 	public void start() {
 		int errandNo;
 		Scanner sc = new Scanner(System.in);
 
 		do {
 			printDialog();
-			System.out.println("Enter your Errand");
+			System.out.println("" );
+			System.out.println("Enter a number representing your Errand!");
 			String stringErrandNo = sc.next();
 			System.out.println("Errand number:" + stringErrandNo);
 			errandNo = Integer.parseInt(stringErrandNo);
 
 			switch (errandNo) {
 			case 1:
-				parkYOurVehicle();
+				parkYourVehicle();
 				break;
 			case 2:
 				unparkYourVehicle();
@@ -66,57 +73,180 @@ public class UserInterface {
 			}
 
 		} while (errandNo != 7);
+		
+		System.out.println("");
+		System.out.println("You have left Vehicle Garage Parking!");
 
 		sc.close();
-
 	}
 
 	private void listAllParkedVehicles() {
-		System.out.println("List all parked vehicles");
+		System.out.println("");
+		System.out.println("List all parked vehicles:");
 		TreeMap<String, Vehicle> vehicleMap = vehicleGarage.getVehicleMap();
-		
+
 		for (Vehicle nextVehicle : vehicleMap.values()) {
-			System.out.println(nextVehicle.toString());					
+			System.out.println(nextVehicle.toString());
 		}
+		System.out.println("");
 	}
 
 	private void listAllTypesOfParkedVehicles() {
-		System.out.println("List all types of parked vehicles");
+		System.out.println("");
+		System.out.println("List all types of parked vehicles:");
+		TreeMap<String, Vehicle> vehicleMap = vehicleGarage.getVehicleMap();
+		
+		for (Vehicle nextVehicle : vehicleMap.values()) {
+		    if (nextVehicle.getVehicleType() == VehichleType.CAR) {	
+		    	System.out.println("Vehicle of type " + nextVehicle.getVehicleType() + " is parked");
+		    	break;
+		   }
+		}
+		for (Vehicle nextVehicle : vehicleMap.values()) {
+		    if (nextVehicle.getVehicleType() == VehichleType.BOAT) {	
+		    	System.out.println("Vehicle of type " + nextVehicle.getVehicleType() + " is parked");
+		    	break;
+		   }
+		}
+		for (Vehicle nextVehicle : vehicleMap.values()) {
+		    if (nextVehicle.getVehicleType() == VehichleType.AIRPLANE) {	
+		    	System.out.println("Vehicle of type" + nextVehicle.getVehicleType() + " is parked");
+		    	System.out.println("");
+		    	break;
+		   }
+		}
+		
+		for (Vehicle nextVehicle : vehicleMap.values()) {
+		    if (nextVehicle.getVehicleType() == VehichleType.BUS) {	
+		    	System.out.println("Vehicle of type" + nextVehicle.getVehicleType() + " is parked");
+		    	System.out.println("");
+		    	break;
+		   }
+		}
+		
+		for (Vehicle nextVehicle : vehicleMap.values()) {
+		    if (nextVehicle.getVehicleType() == VehichleType.MOTORCYCLE) {	
+		    	System.out.println("Vehicle of type" + nextVehicle.getVehicleType() + " is parked");
+		    	System.out.println("");
+		    	break;
+		   }
+		}
+		
+		System.out.println("");
+		
 	}
 
-	private void parkYOurVehicle() {
+	private void parkYourVehicle() {
 		System.out.println("Park your vehicle");
-		
-		try {		
-		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Enter registrationNumber");
-		String stringRegistrationNumber = sc.next();
-		System.out.println("Registration number:" + stringRegistrationNumber);
+		try {
 
-		System.out.println("Enter color");
-		String stringColor = sc.next();
-		System.out.println("Color:" + stringColor);
+			Scanner sc = new Scanner(System.in);
 
-		System.out.println("Enter number of wheels");
-		String stringWheels = sc.next();
-		System.out.println("Color:" + stringWheels);
-		int intWheels = Integer.parseInt(stringWheels);
+			System.out.println("Enter registrationNumber");
+			String stringRegistrationNumber = sc.next();
+			System.out.println("Registration number:" + stringRegistrationNumber);
 
-		System.out.println("Enter Vehicle type");
-		String stringVehicleType = sc.next();
-		System.out.println("VehicleType:" + stringVehicleType);
+			System.out.println("Enter color");
+			String stringColor = sc.next();
+			System.out.println("Color:" + stringColor);
 
-		System.out.println("Enter number of seats");
-		String stringNumberOfSeats = sc.next();
-		System.out.println("Vehicle number of seats:" + stringNumberOfSeats);
-		int intNumberOfSeats = Integer.parseInt(stringNumberOfSeats);
+			System.out.println("Enter number of wheels");
+			String stringWheels = sc.next();
+			System.out.println("Color:" + stringWheels);
+			int intWheels = Integer.parseInt(stringWheels);
 
-		// TODO: Convert intVehicleType to vehicleType
+			System.out.println("Enter Vehicle type");
+			String stringVehicleType = sc.next().toLowerCase();
+			System.out.println("VehicleType:" + stringVehicleType);
 
-		Car newCar = new Car(stringRegistrationNumber, stringColor, intWheels, VehichleType.CAR, intNumberOfSeats);		
-		vehicleGarage.addVehicle(newCar);
-		
+			switch (stringVehicleType) {
+
+			case "car":
+				
+				// Unique property number of seats for vehicle of type CAR
+				System.out.println("Enter number of seats");
+				String stringNumberOfSeats = sc.next();
+				System.out.println("Vehicle number of seats:" + stringNumberOfSeats);
+				int intNumberOfSeats = Integer.parseInt(stringNumberOfSeats);
+				
+				Car newCar = new Car(stringRegistrationNumber, stringColor, intWheels,
+						convertStringVehicleTypeToVehicleType(stringVehicleType), intNumberOfSeats);
+				vehicleGarage.addVehicle(newCar);
+				
+				System.out.println("Your vehicle is now parked!");
+				System.out.println("");
+				break;
+				
+			case "boat":
+				
+				// Unique property cylendar volume for vehicle of type BOAT
+				System.out.println("Enter vehicle cylendar volume:");
+				String stringCylendarVolume = sc.next();
+				System.out.println("Vehicle cylendar volume:" + stringCylendarVolume);
+				int intCylendarVolume = Integer.parseInt(stringCylendarVolume);
+				
+				Boat newBoat = new Boat(stringRegistrationNumber, stringColor, intWheels,
+					convertStringVehicleTypeToVehicleType(stringVehicleType), intCylendarVolume);
+				vehicleGarage.addVehicle(newBoat);
+				
+				System.out.println("Your vehicle is now parked!");
+				System.out.println("");
+				break;
+
+				
+				case "bus":
+				
+				// Unique property length for vehicle of type BUS
+				System.out.println("Enter vehicle length:");
+				String stringLength= sc.next();
+				System.out.println("Vehicle length:" + stringLength);
+				int intLength = Integer.parseInt(stringLength);
+				
+				Bus newBus = new Bus(stringRegistrationNumber, stringColor, intWheels,
+					convertStringVehicleTypeToVehicleType(stringVehicleType), intLength);
+				vehicleGarage.addVehicle(newBus);
+				
+				System.out.println("Your vehicle is now parked!");
+				System.out.println("");
+				break;
+				
+				case "airplane":
+				
+				// Unique property number of engines for vehicle of type AIRPLANE
+				System.out.println("Enter vehicle number of engines:");
+				String stringNumberOfEngines= sc.next();
+				System.out.println("Vehicle number of engines:" + stringNumberOfEngines);
+				int intNumberOfEngines = Integer.parseInt(stringNumberOfEngines);
+				
+				Airplane newAirplane = new Airplane(stringRegistrationNumber, stringColor, intWheels,
+					convertStringVehicleTypeToVehicleType(stringVehicleType), intNumberOfEngines);
+				vehicleGarage.addVehicle(newAirplane);
+				
+				System.out.println("Your vehicle is now parked!");
+				System.out.println("");
+				break;
+				
+				case "motorcycle":
+				
+				// Unique property fuel type for vehicle of type MOTORCYCLE
+				System.out.println("Enter vehicle fuel type:");
+				String stringFuelType= sc.next().toLowerCase();
+				System.out.println("Vehicle fuel type:" + stringFuelType);
+							
+				Motorcycle newMotorcycle = new Motorcycle(stringRegistrationNumber, stringColor, intWheels,
+						convertStringVehicleTypeToVehicleType(stringVehicleType), convertStringVehicleFuelTypeToVehicleFuelType(stringFuelType));
+				vehicleGarage.addVehicle(newMotorcycle);
+				
+				System.out.println("Your vehicle is now parked!");
+				System.out.println("");
+				break;
+								
+			default:
+				
+				System.out.println("Your Vehicle type is " + VehichleType.UNKNOWN + " can not be parked");
+							}
+
 		} catch (VehicleGarageFullException e) {
 			System.out.println("Garage full - no parkings slots available");
 		}
@@ -124,21 +254,25 @@ public class UserInterface {
 
 	private void unparkYourVehicle() {
 		System.out.println("Unpark your vehicle");
-		
+
+		try {
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("Enter registrationNumber");
+
+		System.out.println("Enter registrationNumber:");
 		String stringRegistrationNumber = sc.next();
 		System.out.println("Registration number:" + stringRegistrationNumber);
 		vehicleGarage.removeVehicle(stringRegistrationNumber);
-		
+		} catch (VehicleNotFoundException e) {
+		 System.out.println("Your vehicle is not parked here");
+		}
+
 	}
 
 	private void setVehicleGarageCapacity() {
-		
+
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("Enter max vehicle garage capacity");
+
+		System.out.println("Enter max vehicle garage capacity:");
 		String stringCapacity = sc.next();
 		System.out.println("Capacity:" + stringCapacity);
 		int intCapacity = Integer.parseInt(stringCapacity);
@@ -147,7 +281,7 @@ public class UserInterface {
 	}
 
 	private void searchForVehicle() {
-		System.out.println("Search for Vehicle");
+		System.out.println("Search for Vehicle:");
 		try {
 			Scanner sc = new Scanner(System.in);
 
@@ -158,8 +292,62 @@ public class UserInterface {
 			Vehicle foundVehicle = vehicleGarage.findVehicle(stringRegistrationNumber);
 			System.out.println(foundVehicle.toString());
 		} catch (VehicleNotFoundException e) {
-			System.out.println("Vehicle not found");
+			System.out.println("Vehicle you searched for is not found");
 		}
+	}
+
+	private VehichleType convertStringVehicleTypeToVehicleType(String stringVehicleType) {
+
+		VehichleType vehicleType;
+
+		switch (stringVehicleType) {
+
+		case "car":
+			vehicleType = VehichleType.CAR;
+			break;
+		case "boat":
+			vehicleType = VehichleType.BOAT;
+			break;
+		case "airplane":
+			vehicleType = VehichleType.AIRPLANE;
+			break;
+		case "motorcycle":
+			vehicleType = VehichleType.MOTORCYCLE;
+			break;
+		case "bus":
+			vehicleType = VehichleType.BUS;
+			break;
+		default:
+			vehicleType = VehichleType.UNKNOWN;
+		}
+		return vehicleType;
+	}
+	
+		private VehicleFuelType convertStringVehicleFuelTypeToVehicleFuelType(String stringFuelType) {
+
+		VehicleFuelType fuelType;
+
+		switch (stringFuelType) {
+
+		case "gas":
+			fuelType = VehicleFuelType.GAS;
+			break;
+		case "bio":
+			fuelType = VehicleFuelType.BIO;
+			break;
+		case "diesel":
+			fuelType = VehicleFuelType.DIESEL;
+			break;
+		case "electrical":
+			fuelType = VehicleFuelType.ELECTRICAL;
+			break;
+		case "petrol":
+			fuelType = VehicleFuelType.PETROL;
+			break;
+		default:
+			fuelType = VehicleFuelType.UNKNOWN;
+		}
+		return fuelType;
 	}
 
 }

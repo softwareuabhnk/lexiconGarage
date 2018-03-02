@@ -9,7 +9,7 @@ public interface VehicleGarageInterface {
 	
 	public void addVehicle(Vehicle newVehicle) throws VehicleGarageFullException;
 	
-	public void removeVehicle(String registrationNumber);
+	public void removeVehicle(String registrationNumber) throws VehicleNotFoundException;
 	
 	public TreeMap<String, Vehicle> getVehicleMap();
 	

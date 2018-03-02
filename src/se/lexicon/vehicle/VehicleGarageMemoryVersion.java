@@ -15,28 +15,31 @@ public class VehicleGarageMemoryVersion implements VehicleGarageInterface {
 
 	}
 
-	public  void addVehicle(Vehicle newVehicle) throws VehicleGarageFullException {
-		
-		//TODO: Check of maxNumberOfCapacity is exceeded
-		
-		
+	public void addVehicle(Vehicle newVehicle) throws VehicleGarageFullException {
+
+		// TODO: Check of maxNumberOfCapacity is exceeded
+
 		if (vehicleMap.size() < maxGarageCapacity) {
-		
-		vehicleMap.put(newVehicle.getRegistrationNumber(), newVehicle);
-		
+
+			vehicleMap.put(newVehicle.getRegistrationNumber(), newVehicle);
+
 		} else {
 			throw new VehicleGarageFullException();
 		}
 
 	}
-	
-	public  void removeVehicle(String registrationNumber) {
-		
-		vehicleMap.remove(registrationNumber);
-		System.out.println("Vehicle with regNumber removed:" + registrationNumber );
 
+	public void removeVehicle(String registrationNumber) throws VehicleNotFoundException {
+
+		if (null != vehicleMap.remove(registrationNumber)) {
+
+			System.out.println("Vehicle with regNumber removed:" + registrationNumber);
+			return;
+		} 
+			
+		System.out.println("Vehicle with registration number is not parked: " + registrationNumber);
+		throw new VehicleNotFoundException();
 	}
-	
 
 	public Vehicle findVehicle(String registrationNumber) throws VehicleNotFoundException {
 
@@ -50,18 +53,17 @@ public class VehicleGarageMemoryVersion implements VehicleGarageInterface {
 
 		}
 
-		System.out.println("Registration number not found");
+		System.out.println("Vehicle with registration number is not found: " + registrationNumber);
 		throw new VehicleNotFoundException();
 	}
-	
+
 	public TreeMap getVehicleMap() {
 		return vehicleMap;
 	}
-	
+
 	public void setVehicleGarageCapacity(int capacity) {
 		maxGarageCapacity = capacity;
-		
+
 	}
-	
-	
+
 }
