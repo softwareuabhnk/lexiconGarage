@@ -247,7 +247,7 @@ public class UserInterface {
 			default:
 
 				System.out.println("Your Vehicle type is " + VehichleType.UNKNOWN + " can not be parked");
-				System.out.println("");
+				System.out.println("");			
 			}
 
 		} catch (VehicleGarageFullException e) {
