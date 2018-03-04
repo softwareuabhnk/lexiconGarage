@@ -1,7 +1,5 @@
 package se.lexicon.vehicle;
 
-import java.util.Scanner;
-
 import se.lexicon.ui.UserInterface;
 
 

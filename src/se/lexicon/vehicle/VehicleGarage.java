@@ -5,19 +5,17 @@ import java.util.TreeMap;
 import se.lexicon.exception.VehicleGarageFullException;
 import se.lexicon.exception.VehicleNotFoundException;
 
-public class VehicleGarageMemoryVersion implements VehicleGarageInterface {
+public class VehicleGarage implements VehicleGarageInterface {
 
 	private TreeMap<String, Vehicle> vehicleMap;
 	private int maxGarageCapacity;
 
-	public VehicleGarageMemoryVersion() {
+	public VehicleGarage() {
 		vehicleMap = new TreeMap<String, Vehicle>();
 
 	}
 
 	public void addVehicle(Vehicle newVehicle) throws VehicleGarageFullException {
-
-		// TODO: Check of maxNumberOfCapacity is exceeded
 
 		if (vehicleMap.size() < maxGarageCapacity) {
 
@@ -57,13 +55,14 @@ public class VehicleGarageMemoryVersion implements VehicleGarageInterface {
 		throw new VehicleNotFoundException();
 	}
 
-	public TreeMap getVehicleMap() {
+	public TreeMap<String, Vehicle > getVehicleMap() {
 		return vehicleMap;
 	}
 
 	public void setVehicleGarageCapacity(int capacity) {
+		
 		maxGarageCapacity = capacity;
-
+		System.out.println("Garage max capacity set to: " + maxGarageCapacity);
 	}
 
 }
