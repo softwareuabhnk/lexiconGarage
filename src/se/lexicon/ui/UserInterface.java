@@ -3,7 +3,7 @@ package se.lexicon.ui;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import se.lexicon.vehicle.VehicleGarageMemoryVersion;
+import se.lexicon.vehicle.VehicleGarage;
 import se.lexicon.exception.VehicleGarageFullException;
 import se.lexicon.exception.VehicleNotFoundException;
 import se.lexicon.utilities.VehichleType;
@@ -18,7 +18,7 @@ import se.lexicon.vehicle.VehicleGarageInterface;
 
 public class UserInterface {
 
-	VehicleGarageInterface vehicleGarage = new VehicleGarageMemoryVersion();
+	VehicleGarageInterface vehicleGarage = new VehicleGarage();
 
 	public void printHeader() {
 		System.out.println("Welcome to Vehicle Garage Parking:");
@@ -245,10 +245,12 @@ public class UserInterface {
 			default:
 				
 				System.out.println("Your Vehicle type is " + VehichleType.UNKNOWN + " can not be parked");
-							}
+				System.out.println("");			
+			}
 
 		} catch (VehicleGarageFullException e) {
 			System.out.println("Garage full - no parkings slots available");
+			System.out.println("");
 		}
 	}
 
