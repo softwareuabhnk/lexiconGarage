@@ -1,0 +1,102 @@
+@startuml
+
+title Classes - Class Diagram (WORK - ONGOING)
+
+class Main
+
+class Vehicle {
+  -String color
+  -Int numberOfWheels
+  -String registrationNumber
+  -vehicleType type
+  + void Vehicle()
+  +String toString()
+  +String getRegistrationNumber()
+  +String getColor()
+  +int getNumberOfWheels()
+  +String getRegistrationNumber()
+}
+
+class Car {
+-int numberOfSeats
++Void Car()
++String toString()
++int getNumberOfSeats()
+
+}
+
+class Bus {
+-int lenght
++Void Bus()
++String toString()
++int getLenght()
+}
+
+class Motorcycle{
+-String fuelType
++Void Motorcycle()
++String toString()
++String getFuelType()
+}
+
+class Airplane{
+-int numberOfEngines
++void Airplane()
++String toString()
++int getNumberOfEngines()
+}
+
+class Boat {
+-String cylenderVolume
++void Boat()
++String toString()
++String getCylenderVolume()
+}
+
+class UI {
++void ListAllParkedVehicles() Admin!
++void ListAllTypesOfParkedVehicles() Admin
++void parkYourVehicle() User!
++void unparkYourVehicle() User!
++void setVehicleGarageCapacity() Admin!
++void searchForVehicle() Admin!
+
+}
+
+class VehicleGarage {
+-String location
+-VehicleStatusType status
+-int maxNumberOfCapacity
+-Vehicles collectionOfVehicles
++void VehicleGarage()
++string getLocation()
++int getMaxNumberOfVehicles()
+
++Vehicle findVehicle()
++boolean parkVehicle()
++bolean unparkVehicle()
++void getAllVehicles()
++void setVehicleGarageCapacity()
+}
+
+Interface VehicleGarageInterface{
+boolean parkVehicle(Vehicle vehicle)
+boolean unparkVehicle(String registrationNumber)
+Vehicle findVehicle(String registrationNumber)
+collectionOfVehicles getAllVehicles()
+void setVehicleGarageCapacity(int maxNumberOfVehicles)
+}
+
+class VehicleNotFoundExceptioin
+
+class VehicleGarageFullException
+
+enum VehicleType {
+CAR, BUS, MOTORCYCKLE, AIRPLANE, BOAT, UNKNWON
+}
+
+enum FuelType {
+DIESEL, GAS, BIO, ELECTRICAL
+}
+
+@enduml
